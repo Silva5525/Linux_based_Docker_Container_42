@@ -1,0 +1,54 @@
+{
+	"name": "Debi C++",
+	"build": {
+	  "dockerfile": "Dockerfile",
+	  "context": "."
+	},
+	"customizations": {
+	  "vscode": {
+		"settings": {
+		  "terminal.integrated.shell.linux": "/bin/bash"
+		},
+		"extensions": [
+							"ms-vscode.cpptools",
+							"platformio.platformio-ide"
+		]
+	  }
+	},
+	"forwardPorts": [],
+	"postCreateCommand": "echo 'Codespace ist bereit!'"
+}
+
+// {
+// 	"name": "Debian C++",
+// 	"build": {
+// 		"dockerfile": "Dockerfile",
+// 		"context": ".",
+// 		"args": {
+// 			"FEDORA_COMPAT" : "1", // enables fedora compatibility mode (extra dialout group with gid 18)
+// 			"VARIANT": "bookworm"
+// 		}
+// 	},
+// 	"customizations": {
+// 		"vscode": {
+// 			"settings": {
+// 				"terminal.integrated.defaultProfile.linux": "zsh"
+// 			},
+// 			"extensions": [
+// 				"ms-vscode.cpptools",
+// 				"platformio.platformio-ide"
+// 			]
+// 		}
+// 	},
+// 	"forwardPorts": [
+// 		8008
+// 	],
+// 	"mounts": [
+// 		"source=/dev/,target=/dev/,type=bind,consistency=consistent"
+// 	],
+// 	"runArgs": [
+// 		"--privileged"
+// 	],
+// 	"features": {},
+// 	"postAttachCommand": "sudo service udev restart"
+// }

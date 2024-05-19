@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# This script adds the public SSH key to GitHub
+# The website explains how to create it.
+# https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token
+
+# Ersetze YOUR_GITHUB_TOKEN mit deinem echten Token
+GITHUB_TOKEN="YOUR_GITHUB_TOKEN"
+SSH_KEY_PATH="$HOME/.ssh/id_ed25519.pub"
+SSH_KEY_TITLE="Master_Key"
+
+# reads the public SSH key from the file
+SSH_KEY=$(cat "${SSH_KEY_PATH}")
+
+# JSON-Format for the API request
+JSON_DATA=$(jq -n \
+                  --arg key "$SSH_KEY" \
+                  --arg title "$SSH_KEY_TITLE" \
+                  '{"title": $title, "key": $key}')
+
+# API-Request for GitHub including the token
+curl -X POST -H "Authorization: token $GITHUB_TOKEN" \
+     -H "Accept: application/vnd.github.v3+json" \
+     -d "$JSON_DATA" \
+     "https://api.github.com/user/keys"
