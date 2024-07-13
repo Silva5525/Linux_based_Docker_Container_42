@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        GITHUB_TOKEN: ${GITHUB_TOKEN}
+    environment:
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+    volumes:
+      - .:/workspace
+    command: /bin/bash -c "tail -f /dev/null"
