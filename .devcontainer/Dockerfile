@@ -29,8 +29,8 @@ RUN curl -fsSL -o /tmp/get-platformio.py https://raw.githubusercontent.com/platf
     && python3 /tmp/get-platformio.py \
     && echo 'export PATH="$PATH:$HOME/.platformio/penv/bin"' | tee -a ~/.bashrc ~/.zshrc
 
-# Generate SSH key for Git operations
-RUN ssh-keygen -t ed25519 -C "silvus6@hotmail.com" -f ~/.ssh/id_ed25519 -N "" \
+# Generate SSH key for Git operations ########################### change your mail adress with a git releatet one
+RUN ssh-keygen -t ed25519 -C "example@nono.com" -f ~/.ssh/id_ed25519 -N "" \
     && echo "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 
 ARG DEBIAN_FRONTEND=
